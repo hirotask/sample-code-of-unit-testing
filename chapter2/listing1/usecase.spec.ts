@@ -1,3 +1,7 @@
+/**
+ * 古典学派の単体テスト(pp.32)
+ */
+
 import { Customer, Store } from "../usecase"
 
 test('在庫（quantity）が十分にある場合、購入は成功することのテスト', () => {
