@@ -1,6 +1,13 @@
 type Product = 'Shampoo' | 'Book'
 
-export class Store {
+export interface IStore {
+	hasEnoughInventory: (product: Product, quantity: number) => boolean
+	removeInventory: (product: Product, quantity: number) => void
+	addInventory: (product: Product, quantity: number) => void
+	getInventory: (product: Product) => number
+}
+
+export class Store implements IStore {
 	private readonly inventory = new Map<Product, number>()
 
 	hasEnoughInventory(product: Product, quantity: number): boolean {
@@ -33,7 +40,7 @@ export class Store {
 }
 
 export class Customer {
-	purchase(store: Store, product: Product, quantity: number) {
+	purchase(store: IStore, product: Product, quantity: number) {
 		if(!store.hasEnoughInventory(product, quantity)) {
 			return false
 		}
